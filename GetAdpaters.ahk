@@ -7,7 +7,7 @@ objWMIService := ComObjGet( "winmgmts:{impersonationLevel=impersonate}!\\.\root\
 colItems := objWMIService.ExecQuery("Select * from Win32_NetworkAdapter")._NewEnum
 While colItems[objItem] {
 	txt:=A_Index . " - Adapter: " . ObjItem.Name . ", Speed:" . round(objItem.speed / 1000000,1) . "MBps`n"
-	;if (ObjItem.NetconnectionStatus = 2)
-	FileAppend, %txt%, conexões.txt
+	if (ObjItem.NetconnectionStatus = 2)
+	 FileAppend, %txt%, conexões.txt
 }
 Return
